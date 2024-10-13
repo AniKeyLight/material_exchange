@@ -4,7 +4,7 @@
 подключаемые приложения, middleware, шаблоны, базу данных, валидацию паролей, интернационализацию,
 статические файлы, тип первичного ключа по умолчанию, а также настройки аутентификации с использованием JWT-токенов.
 """
-
+import os
 from pathlib import Path
 from datetime import timedelta
 
@@ -77,13 +77,19 @@ WSGI_APPLICATION = 'material_exchange.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'db.mat_exch',
+        'USER': 'your_username',  # Имя пользователя
+        'PASSWORD': 'your_password',  # Пароль
+        'HOST': 'db',  # Имя сервиса в docker-compose
+        'PORT': '5432',  # Порт PostgreSQL
     }
 }
-# Настраиваем базу данных (в данном случае SQLite)
+
+# Настраиваем базу данных PostgreSQL
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators

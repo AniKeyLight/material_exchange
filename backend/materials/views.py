@@ -10,6 +10,8 @@ from .serializers import MaterialSerializer, SellerSerializer
 class MaterialListCreateAPIView(generics.ListCreateAPIView):
     queryset = Material.objects.all()
     serializer_class = MaterialSerializer
+    def perform_create(self, serializer):
+        serializer.save()
 
 class MaterialRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Material.objects.all()
@@ -18,6 +20,8 @@ class MaterialRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView
 class SellerListCreateAPIView(generics.ListCreateAPIView):
     queryset = Seller.objects.all()
     serializer_class = SellerSerializer
+    def perform_create(self, serializer):
+        serializer.save()
 
 class SellerRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Seller.objects.all()

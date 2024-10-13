@@ -1,0 +1,30 @@
+
+
+services:
+  web:
+    build: .
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    environment:
+      - DEBUG=True  # Убедитесь, что вы добавили нужные переменные окружения
+    volumes:
+      - .:/app
+    command: python backend/manage.py runserver 0.0.0.0:8000
+
+  db:
+    image: postgres:latest
+    environment:
+      POSTGRES_DB: db.mat_exch
+      POSTGRES_USER: your_username  # Установите свой логин
+      POSTGRES_PASSWORD: your_password  # Установите свой пароль
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
+
+
+
+
